@@ -2,7 +2,7 @@ import { getStoryblokApi } from "@/lib/storyblok";
 import { storyblokContentVersion } from "@/lib/storyblok-config";
 import { getStoryblokLink } from "@/lib/storyblok-link";
 import { getColorStyles } from "@/lib/color-styles";
-import SidebarMenu from "@/app/components/SidebarMenu";
+import SidebarMenu from "@/components/SidebarMenu";
 
 export default async function Sidebar({ children }) {
   const storyblokApi = getStoryblokApi();
