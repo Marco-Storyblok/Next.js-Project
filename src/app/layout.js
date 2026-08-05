@@ -1,6 +1,6 @@
 import "./globals.css";
-import StoryblokProvider from "@/components/StoryblokProvider";
-import Sidebar from "@/components/Sidebar";
+import StoryblokProvider from "@/app/components/StoryblokProvider";
+import Sidebar from "@/app/components/Sidebar";
 
 export default function RootLayout({ children }) {
   return (
