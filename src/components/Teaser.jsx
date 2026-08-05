@@ -1,6 +1,7 @@
 import { storyblokEditable } from "@storyblok/react/rsc";
 import { getStoryblokLink } from "@/lib/storyblok-link";
 import { getColorStyles } from "@/lib/color-styles";
+import { LocalizedLink } from "@/components/LanguageProvider";
 
 export default function Teaser({ blok }) {
   const alignment = ["left", "center", "right"].includes(blok.alignment)
@@ -35,7 +36,7 @@ export default function Teaser({ blok }) {
         )}
 
         {blok.show_button && buttonUrl && blok.button_label && (
-          <a
+          <LocalizedLink
             href={buttonUrl}
             target={blok.button_link?.target || "_self"}
             rel={
@@ -46,7 +47,7 @@ export default function Teaser({ blok }) {
             className="button"
           >
             {blok.button_label}
-          </a>
+          </LocalizedLink>
         )}
       </div>
     </section>

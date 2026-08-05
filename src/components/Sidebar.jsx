@@ -4,9 +4,9 @@ import { getStoryblokLink } from "@/lib/storyblok-link";
 import { getColorStyles } from "@/lib/color-styles";
 import SidebarMenu from "@/components/SidebarMenu";
 
-export default async function Sidebar({ children }) {
+export default async function Sidebar({ children, language }) {
   const storyblokApi = getStoryblokApi();
-  const settings = await getSettings(storyblokApi);
+  const settings = await getSettings(storyblokApi, language);
 
   if (!settings) {
     return children;
@@ -35,16 +35,19 @@ export default async function Sidebar({ children }) {
         "--button-background": settings.button_background_color,
         "--button-text": settings.button_text_color,
       })}
+      language={language}
     >
       {children}
     </SidebarMenu>
   );
 }
 
-async function getSettings(storyblokApi) {
+async function getSettings(storyblokApi, language) {
   try {
     const { data } = await storyblokApi.get("cdn/stories/settings", {
       version: storyblokContentVersion,
+      ...(language === "en" ? {} : { language }),
+      resolve_links: "url",
     });
 
     return data.story.content;

@@ -1,7 +1,8 @@
 export function getStoryblokLink(link) {
   if (!link) return "";
 
-  const rawUrl = link.cached_url || link.url || "";
+  const rawUrl =
+    link.story?.full_slug || link.cached_url || link.url || "";
   if (!rawUrl) return "";
 
   if (link.linktype === "email") {

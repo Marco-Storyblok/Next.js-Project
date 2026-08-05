@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { storyblokEditable } from "@storyblok/react/rsc";
 import { getStoryblokLink } from "@/lib/storyblok-link";
 import { getColorStyles } from "@/lib/color-styles";
+import { LocalizedLink } from "@/components/LanguageProvider";
 
 export default function Favorite({ blok }) {
   const href = getStoryblokLink(blok.link);
@@ -21,7 +21,11 @@ export default function Favorite({ blok }) {
       <article className="favorite__content">
         {blok.title && (
           <h1 className="favorite__title">
-            {href ? <Link href={href}>{blok.title}</Link> : blok.title}
+            {href ? (
+              <LocalizedLink href={href}>{blok.title}</LocalizedLink>
+            ) : (
+              blok.title
+            )}
           </h1>
         )}
 
@@ -37,7 +41,7 @@ export default function Favorite({ blok }) {
 
               return (
                 <li key={story.uuid}>
-                  <Link href={storyHref}>{story.name}</Link>
+                  <LocalizedLink href={storyHref}>{story.name}</LocalizedLink>
                 </li>
               );
             })}

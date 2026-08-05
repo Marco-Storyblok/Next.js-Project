@@ -1,14 +1,11 @@
 import "./globals.css";
 import StoryblokProvider from "@/components/StoryblokProvider";
-import Sidebar from "@/components/Sidebar";
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body>
-        <StoryblokProvider>
-          <Sidebar>{children}</Sidebar>
-        </StoryblokProvider>
+        <StoryblokProvider>{children}</StoryblokProvider>
       </body>
     </html>
   );

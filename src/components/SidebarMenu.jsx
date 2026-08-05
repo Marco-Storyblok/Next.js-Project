@@ -1,8 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import {
+  LocalizedLink,
+  useLanguage,
+} from "@/components/LanguageProvider";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function SidebarMenu({
   items,
@@ -11,7 +15,19 @@ export default function SidebarMenu({
   children,
 }) {
   const pathname = usePathname();
+  const language = useLanguage();
   const [isOpen, setIsOpen] = useState(true);
+  const labels = language === "es"
+    ? {
+        hide: "Ocultar navegación",
+        show: "Mostrar navegación",
+        navigation: "Navegación principal",
+      }
+    : {
+        hide: "Hide navigation",
+        show: "Show navigation",
+        navigation: "Main navigation",
+      };
 
   return (
     <div
@@ -25,19 +41,19 @@ export default function SidebarMenu({
             type="button"
             className="sidebar__close"
             onClick={() => setIsOpen(false)}
-            aria-label="Hide navigation"
+            aria-label={labels.hide}
             tabIndex={isOpen ? 0 : -1}
           >
             ×
           </button>
         </div>
 
-        <nav className="sidebar__navigation" aria-label="Main navigation">
+        <nav className="sidebar__navigation" aria-label={labels.navigation}>
           {items.map((item) => {
             const isActive = pathname === item.href;
 
             return (
-              <Link
+              <LocalizedLink
                 key={item.id}
                 href={item.href}
                 className={`sidebar__link ${isActive ? "sidebar__link--active" : ""}`}
@@ -45,10 +61,11 @@ export default function SidebarMenu({
                 tabIndex={isOpen ? 0 : -1}
               >
                 {item.label}
-              </Link>
+              </LocalizedLink>
             );
           })}
         </nav>
+        <LanguageSwitcher />
       </aside>
 
       <div className="site-shell__content">
@@ -57,7 +74,7 @@ export default function SidebarMenu({
             type="button"
             className="sidebar__open"
             onClick={() => setIsOpen(true)}
-            aria-label="Show navigation"
+            aria-label={labels.show}
             aria-expanded="false"
           >
             ☰

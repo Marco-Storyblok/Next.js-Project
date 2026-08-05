@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { storyblokEditable } from "@storyblok/react/rsc";
 import { getStoryblokLink } from "@/lib/storyblok-link";
+import { LocalizedLink } from "@/components/LanguageProvider";
 
 export default function NavigationItem({ blok }) {
   const href = getStoryblokLink(blok.link);
@@ -9,7 +9,11 @@ export default function NavigationItem({ blok }) {
 
   return (
     <div {...storyblokEditable(blok)} className="settings-preview__item">
-      {href ? <Link href={href}>{blok.label}</Link> : blok.label}
+      {href ? (
+        <LocalizedLink href={href}>{blok.label}</LocalizedLink>
+      ) : (
+        blok.label
+      )}
     </div>
   );
 }

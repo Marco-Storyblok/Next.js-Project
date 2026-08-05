@@ -2,6 +2,7 @@ import { storyblokEditable } from "@storyblok/react/rsc";
 import Image from "next/image";
 import { getStoryblokLink } from "@/lib/storyblok-link";
 import { getColorStyles } from "@/lib/color-styles";
+import { LocalizedLink } from "@/components/LanguageProvider";
 
 export default function Feature({ blok }) {
   const buttonUrl = getStoryblokLink(blok.button);
@@ -56,7 +57,7 @@ export default function Feature({ blok }) {
       )}
 
       {buttonUrl && blok.button_label && (
-        <a
+        <LocalizedLink
           href={buttonUrl}
           target={blok.button?.target || "_self"}
           rel={
@@ -67,7 +68,7 @@ export default function Feature({ blok }) {
           className="feature__link"
         >
           {blok.button_label}
-        </a>
+        </LocalizedLink>
       )}
     </article>
   );

@@ -2,6 +2,11 @@
 
 A minimal Next.js App Router project backed by Storyblok. Every Storyblok story is available at its `full_slug`, while the `home` story is rendered at `/`.
 
+The default language is English. Spanish is selected with `?lang=es`; the
+language selector and internal links preserve that choice. Fields translated
+in Storyblok, including the global `settings` story, are requested with the
+active language.
+
 ## Requirements
 
 - Node.js 20.9 or later
@@ -115,6 +120,7 @@ The order of the blocks in `settings.navigation_items` determines the sidebar or
 | `description` | Textarea | — |
 | `link` | Link | Makes the title a link |
 | `related_stories` | Multi-Options | Source: Internal stories; use UUIDs |
+| `linked_story` | Single-Option | Source: Internal stories; use a UUID (optional) |
 | `background_color` | Single-Option | Internal datasource `theme-colors` |
 | `text_color` | Single-Option | Internal datasource `theme-colors` |
 
