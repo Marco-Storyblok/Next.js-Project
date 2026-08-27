@@ -5,12 +5,15 @@ import Teaser from "@/components/Teaser";
 import Favorite from "@/components/Favorite";
 import Settings from "@/components/Settings";
 import NavigationItem from "@/components/NavigationItem";
+import RichText from "@/components/RichText";
 
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc";
 
 export const getStoryblokApi = storyblokInit({
   accessToken: process.env.STORYBLOK_DELIVERY_API_TOKEN,
+
   use: [apiPlugin],
+
   components: {
     page: Page,
     feature: Feature,
@@ -19,7 +22,9 @@ export const getStoryblokApi = storyblokInit({
     favorite: Favorite,
     settings: Settings,
     navigation_item: NavigationItem,
+    rich_text: RichText,
   },
+
   apiOptions: {
     region: process.env.STORYBLOK_REGION || "eu",
   },
